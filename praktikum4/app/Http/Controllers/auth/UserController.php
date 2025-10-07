@@ -42,23 +42,25 @@ class UserController extends Controller
 
     // ===================== PROSES REGISTER ===================== //
     public function register(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+{
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-        ]);
+    $validated = $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'string', 'min:6', 'confirmed'],
+    ]);
 
-        Auth::login($user);
+    $user = User::create([
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'password' => Hash::make($validated['password']),
+    ]);
 
-        return redirect('/home')->with('success', 'Registrasi berhasil!');
-    }
+    Auth::login($user);
+
+    return redirect('/home')->with('success', 'Registrasi berhasil!');
+}
+
 
     // ===================== LOGOUT ===================== //
     public function logout(Request $request)

@@ -30,6 +30,10 @@
                             <button type="submit" class="btn btn-primary w-100">Login</button>
                         </form>
 
+                        <div class="mt-3 text-center">
+                            <a href="{{ route('user.register') }}">Belum punya akun?</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
